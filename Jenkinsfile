@@ -1,3 +1,4 @@
+@Library("shared-library") _
 pipeline {
   agent any
   environment {
@@ -8,6 +9,11 @@ pipeline {
       string(name: 'ENVIRONMENT', defaultValue: 'test')
   }
   stages {
+    stage('Set env from') {
+        steps {
+          getEnvironment()
+      }
+    }
     stage('Get KV Config'){
       options {
             azureKeyVault(credentialID: 'mrjoejenkins', 
