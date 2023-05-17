@@ -1,6 +1,7 @@
 @Library("shared-library") _
 pipeline {
-  agent { label "linux" }
+//   agent { label "linux" }
+  agent any
   environment {
     // SECRET_KEY = credentials('mrjoejenkins')
     kv_url = 'https://mrjoekeyvault.vault.azure.net/'
