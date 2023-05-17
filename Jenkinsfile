@@ -12,7 +12,10 @@ pipeline {
   stages {
     stage('Set env from') {
         steps {
-          getEnvironment()
+          script{
+           def env = getEnvironment()
+           echo "config loaded for test $env"
+          }
       }
     }
     stage('Get KV Config'){
