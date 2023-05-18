@@ -39,7 +39,7 @@ pipeline {
         script{
             // def env = getEnvironment()
             echo "Testing!!!!!!!!!! "
-            echo "${env.WORKSPACE}/features/environment.json"
+            echo "${env.WORKSPACE}s/environment.json"
             TEST_ENV = "${params.ENVIRONMENT}" == '' ? getEnvironment("${env.WORKSPACE}/features/environment.json") : "${params.ENVIRONMENT}"   
             // if ("${params.ENVIRONMENT}" == "test"){
             if ("$TEST_ENV" == "test"){
