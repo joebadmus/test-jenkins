@@ -32,7 +32,7 @@ pipeline {
       steps{
         script{
             def env = getEnvironment()
-            echo "config loaded for test $env"
+            echo "env - $env from getEnvironment()"
             // if("${env}" != null){
             //     env.CONFIG = "$env"
             //     echo "config loaded from shared library"
