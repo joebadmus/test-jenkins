@@ -5,6 +5,7 @@ pipeline {
   environment {
     // SECRET_KEY = credentials('mrjoejenkins')
     kv_url = 'https://mrjoekeyvault.vault.azure.net/'
+    settingsFile = "${env.WORKSPACE}/environment.json"
   }
   parameters{
       string(name: 'ENVIRONMENT', defaultValue: '')
@@ -13,7 +14,7 @@ pipeline {
     stage('Set env from') {
         steps {
           script{
-           def env = getEnvironment()
+           def env = getEnvironment("${env.WORKSPACE}/environment.json")
            echo "config loaded for test ${env}"
           }
       }
@@ -33,7 +34,7 @@ pipeline {
         script{
             // def env = getEnvironment()
             echo "Testing!!!!!!!!!! "
-            TEST_ENV = "${params.ENVIRONMENT}" == '' ? getEnvironment() : "${params.ENVIRONMENT}"   
+            TEST_ENV = "${params.ENVIRONMENT}" == '' ? getEnvironment("${env.WORKSPACE}/environment.json") : "${params.ENVIRONMENT}"   
             // if ("${params.ENVIRONMENT}" == "test"){
             if ("$TEST_ENV" == "test"){
                 env.CONFIG = TEST_SEC
