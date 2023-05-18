@@ -33,7 +33,7 @@ pipeline {
         script{
             // def env = getEnvironment()
             echo "Testing!!!!!!!!!! "
-            TEST_ENV = "${params.ENVIRONMENT}" == '' ? getEnvironment() : "${params.ENVIRONMENT} "   
+            TEST_ENV = "${params.ENVIRONMENT}" == '' ? getEnvironment() : "${params.ENVIRONMENT}"   
             // if ("${params.ENVIRONMENT}" == "test"){
             if ("$TEST_ENV" == "test"){
                 env.CONFIG = TEST_SEC
@@ -50,7 +50,7 @@ pipeline {
                 echo "config loaded for pre env  - ${env.CONFIG}"
                 }
             else{
-                error("the env ${params.ENVIRONMENT} is ot allowed")
+                error("the env ${params.ENVIRONMENT} is not allowed")
             }
             }
       }
