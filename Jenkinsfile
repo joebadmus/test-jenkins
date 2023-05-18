@@ -7,7 +7,7 @@ pipeline {
     kv_url = 'https://mrjoekeyvault.vault.azure.net/'
   }
   parameters{
-      string(name: 'ENVIRONMENT', defaultValue: 'test')
+      string(name: 'ENVIRONMENT', defaultValue: '')
   }
   stages {
     stage('Set env from') {
@@ -33,11 +33,10 @@ pipeline {
         script{
             def env = getEnvironment()
             echo "config loaded for test $env"
-            if("${env}" != null){
-                env.CONFIG = "$env"
-                echo "config loaded from shared library"
-            }
-            else{                
+            // if("${env}" != null){
+            //     env.CONFIG = "$env"
+            //     echo "config loaded from shared library"
+            // }else{                
                 if ("${params.ENVIRONMENT}" == "test"){
                 env.CONFIG = TEST_SEC
                 echo "config loaded for test env - ${env.CONFIG}"
@@ -53,7 +52,7 @@ pipeline {
                 else{
                     error("the env ${params.ENVIRONMENT} is ot allowed")
                 }
-            }
+            // }
         }
       }
     }
