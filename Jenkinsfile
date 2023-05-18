@@ -11,14 +11,14 @@ pipeline {
       string(name: 'ENVIRONMENT', defaultValue: '')
   }
   stages {
-    // stage('Set env from') {
-    //     steps {
-    //       script{
-    //        def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
-    //        echo "config loaded for test ${env}"
-    //       }
-    //   }
-    // }
+    stage('Set env from') {
+        steps {
+          script{
+           def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
+           echo "config loaded for test ${env}"
+          }
+      }
+    }
     stage('lists env variables') {
         steps {
           sh 'ls -la'
@@ -39,6 +39,7 @@ pipeline {
         script{
             // def env = getEnvironment()
             echo "Testing!!!!!!!!!! "
+            echo "${env.WORKSPACE}/features/environment.json"
             TEST_ENV = "${params.ENVIRONMENT}" == '' ? getEnvironment("${env.WORKSPACE}/features/environment.json") : "${params.ENVIRONMENT}"   
             // if ("${params.ENVIRONMENT}" == "test"){
             if ("$TEST_ENV" == "test"){
