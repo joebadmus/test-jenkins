@@ -14,7 +14,7 @@ pipeline {
         steps {
           script{
            def env = getEnvironment()
-           echo "config loaded for test $env"
+           echo "config loaded for test ${env}"
           }
       }
     }
@@ -33,22 +33,22 @@ pipeline {
         script{
             def env = getEnvironment()
             echo "config loaded for test $env"
-            if("$env" != null){
+            if("${env}" != null){
                 env.CONFIG = "$env"
                 echo "config loaded from shared library"
             }
             else{                
                 if ("${params.ENVIRONMENT}" == "test"){
                 env.CONFIG = TEST_SEC
-                echo "config loaded for test env"
+                echo "config loaded for test env - ${env.CONFIG}"
                 }
                 else if ("${params.ENVIRONMENT}" == "dev"){
                 env.CONFIG = DEV_SEC
-                echo "config loaded for dev env"
+                echo "config loaded for dev env  - ${env.CONFIG}"
                 }
                 else if ("${params.ENVIRONMENT}" == "pre"){
                 env.CONFIG = PRE_SEC
-                echo "config loaded for pre env"
+                echo "config loaded for pre env  - ${env.CONFIG}"
                 }
                 else{
                     error("the env ${params.ENVIRONMENT} is ot allowed")
