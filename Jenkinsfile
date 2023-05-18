@@ -14,7 +14,7 @@ pipeline {
     stage('Set env from') {
         steps {
           script{
-           def env = getEnvironment("${env.WORKSPACE}/environment.json")
+           def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
            echo "config loaded for test ${env}"
           }
       }
