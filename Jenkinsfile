@@ -31,29 +31,28 @@ pipeline {
             }
       steps{
         script{
-            def env = getEnvironment()
-            echo "env - $env from getEnvironment()"
-            // if("${env}" != null){
-            //     env.CONFIG = "$env"
-            //     echo "config loaded from shared library"
-            // }else{                
-                if ("${params.ENVIRONMENT}" == "test"){
+            // def env = getEnvironment()
+            echo "Testing!!!!!!!!!! "
+            TEST_ENV = "${params.ENVIRONMENT == '' ? getEnvironment() : $params.ENVIRONMENT }"   
+            // if ("${params.ENVIRONMENT}" == "test"){
+            if ("$TEST_ENV" == "test"){
                 env.CONFIG = TEST_SEC
                 echo "config loaded for test env - ${env.CONFIG}"
-                }
-                else if ("${params.ENVIRONMENT}" == "dev"){
+            }
+            // else if ("${params.ENVIRONMENT}" == "dev"){
+            else if ("$TEST_ENV" == "dev"){
                 env.CONFIG = DEV_SEC
                 echo "config loaded for dev env  - ${env.CONFIG}"
-                }
-                else if ("${params.ENVIRONMENT}" == "pre"){
+            }
+            // else if ("${params.ENVIRONMENT}" == "pre"){
+            else if ("$TEST_ENV" == "pre"){
                 env.CONFIG = PRE_SEC
                 echo "config loaded for pre env  - ${env.CONFIG}"
                 }
-                else{
-                    error("the env ${params.ENVIRONMENT} is ot allowed")
-                }
-            // }
-        }
+            else{
+                error("the env ${params.ENVIRONMENT} is ot allowed")
+            }
+            }
       }
     }
     stage('Print kv config') {
