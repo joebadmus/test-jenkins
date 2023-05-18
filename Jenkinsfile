@@ -19,6 +19,11 @@ pipeline {
           }
       }
     }
+    stage('lists env variables') {
+        steps {
+          sh 'ls -la'
+      }
+    }
     stage('Get KV Config'){
       options {
             azureKeyVault(credentialID: 'mrjoejenkins', 
