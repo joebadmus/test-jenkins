@@ -75,6 +75,7 @@ pipeline {
           script {
             echo "=======stage 4========"
               echo "${params.ENVIRONMENT}"
+              echo "${env.BRANCH_NAME}"
           }
         }
     }
