@@ -14,6 +14,7 @@ pipeline {
     stage('Set env version') {
         steps {
           script {
+                sh 'ls -la'
                   // def currentVersion = readFile file: "features/version.txt"
                 setVersion(env.BRANCH_NAME)
                 
