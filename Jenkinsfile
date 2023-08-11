@@ -15,7 +15,7 @@ pipeline {
         steps {
           script {
                   // def currentVersion = readFile file: "features/version.txt"
-                
+                sh 'ls -ltr'
                 setVersion(env.BRANCH_NAME)
                 
                 def currentVersion = getVersion()
