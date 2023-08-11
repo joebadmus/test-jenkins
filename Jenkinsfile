@@ -8,47 +8,42 @@ pipeline {
     settingsFile = "${env.WORKSPACE}/environment.json"
   }
   parameters{
-      string(name: 'ENVIRONMENT', defaultValue: '')
+      string(name: 'ENVIRONMENT', defaultValue: 'test')
   }
   stages {
     stage('Set env version') {
         steps {
-          script{
-                def currentVersion = readFile file: "version.txt"
-                echo "Current Application version is ${version}"
-
+          script {
+                  def currentVersion = readFile file: "version.txt"
+                  echo "Current Application version is ${version}"
                 // Split the version into major, minor, and patch components
-                    def versionParts = currentVersion.split('\\.')
-                    def majorVersion = versionParts[0].toInteger()
-                    def minorVersion = versionParts[1].toInteger()
-                    def patchVersion = versionParts[2].toInteger()
-
+                  def versionParts = currentVersion.split('\\.')
+                  def majorVersion = versionParts[0].toInteger()
+                  def minorVersion = versionParts[1].toInteger()
+                  def patchVersion = versionParts[2].toInteger()
                     // If we're on the main branch, increment the major version
-                    if (env.BRANCH_NAME == 'master') {
-                        majorVersion++
-                        minorVersion = 0
-                        patchVersion = 0
-                    }
-
+                  if (env.BRANCH_NAME == 'master') {
+                      majorVersion++
+                      minorVersion = 0
+                      patchVersion = 0
+                  }
                     // Construct the new version string
-                    def newVersion = "${majorVersion}.${minorVersion}.${patchVersion}"
-
+                  def newVersion = "${majorVersion}.${minorVersion}.${patchVersion}"
                     // Write the new version to a file or environment variable
                     // writeVersionToFileOrEnv(newVersion)
-                    writeFile file: 'version.txt', text: newVersion
-
+                  writeFile file: 'version.txt', text: newVersion
                     // Print the new version for debugging purposes
-                    echo "New version: ${newVersion}"
+                  echo "New version: ${newVersion}"
           }
-      }
+        }
     }
     stage('Set env from') {
-        steps {
-          script{
-           def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
-           echo "config loaded for test ${env}"
-          }
-      }
+          steps {
+            script{
+            def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
+            echo "config loaded for test ${env}"
+            }
+        }
     }
     stage('lists env variables') {
         steps {
