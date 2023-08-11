@@ -14,7 +14,7 @@ pipeline {
     stage('Set env version') {
         steps {
           script{
-                def version = readFile file: "version.txt"
+                def currentVersion = readFile file: "version.txt"
                 echo "Current Application version is ${version}"
 
                 // Split the version into major, minor, and patch components
