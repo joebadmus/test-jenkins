@@ -15,7 +15,7 @@ pipeline {
         steps {
           script {
                   def currentVersion = readFile file: "version.txt"
-                  echo "Current Application version is ${version}"
+                  echo "Current Application version is ${currentVersion}"
                 // Split the version into major, minor, and patch components
                   def versionParts = currentVersion.split('\\.')
                   def majorVersion = versionParts[0].toInteger()
