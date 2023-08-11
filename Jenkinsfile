@@ -11,6 +11,14 @@ pipeline {
       string(name: 'ENVIRONMENT', defaultValue: '')
   }
   stages {
+    stage('Set env version') {
+        steps {
+          script{
+           def version = readFile file: "version.txt"
+           echo "Application version is ${version}"
+          }
+      }
+    }
     stage('Set env from') {
         steps {
           script{
