@@ -15,27 +15,24 @@ pipeline {
         steps {
           script {
                 sh 'ls -la'
+                def json = readJSON file: "features/environment.json"
+                echo "Json Value is ${json}"
                   // def currentVersion = readFile file: "features/version.txt"
-                setVersion(env.BRANCH_NAME)
+                // setVersion(env.BRANCH_NAME)
                 
-                def currentVersion = getVersion()
+                // def currentVersion = getVersion()
 
-                echo "Current Application version is ${currentVersion}"
+                // echo "Current Application version is ${currentVersion}"
           }
         }
     }
     stage('Set env from') {
           steps {
             script{
-            def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
-            echo "config loaded for test ${env}"
+            def json = getEnvironment("${env.WORKSPACE}/features/environment.json")
+            echo "config loaded for test ${json.env}"
             }
         }
-    }
-    stage('lists env variables') {
-        steps {
-          sh 'ls -la'
-      }
     }
     stage('Print env variables') {
         steps {
