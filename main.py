@@ -1,7 +1,7 @@
-import argparse
+import sys
 
-parser = argparse.ArgumentParser(description='Process some input.')
-parser.add_argument('input', metavar='I', type=str, help='an input string')
+# Get the input from the command line.
+input_text = sys.argv[1]
 
-args = parser.parse_args()
-print(args.input)
+# Print the input text.
+print(input_text)
