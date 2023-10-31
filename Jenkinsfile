@@ -15,8 +15,8 @@ pipeline {
         steps {
           script {
 
-                sh 'python3 main.py hello'
-                  // def currentVersion = readFile file: "features/version.txt"
+                sh 'python main.py hello'
+                  // def currentVersion = readFile file: "features/version.txt"s
                 sh 'ls -ltr'
                 setVersion(env.BRANCH_NAME)
                 
