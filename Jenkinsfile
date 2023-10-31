@@ -14,6 +14,8 @@ pipeline {
     stage('Set env version') {
         steps {
           script {
+
+                sh 'python3 main.py hello'
                   // def currentVersion = readFile file: "features/version.txt"
                 sh 'ls -ltr'
                 setVersion(env.BRANCH_NAME)
