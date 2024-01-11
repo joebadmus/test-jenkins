@@ -2,11 +2,7 @@
 pipeline {
 //   agent { label "linux" }
   agent any
-  environment {
-    // SECRET_KEY = credentials('mrjoejenkins')
-    kv_url = 'https://mrjoekeyvault.vault.azure.net/'
-    settingsFile = "${env.WORKSPACE}/environment.json"
-  }
+
   parameters{
       string(name: 'ENVIRONMENT', defaultValue: 'test')
   }
@@ -26,7 +22,8 @@ pipeline {
     stage('Testing Jenkins file') {
         steps {
           script{
-            testJenkinsBuild()
+            // testJenkinsBuild()
+            getVersion()
           }
       }
     }
