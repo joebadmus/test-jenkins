@@ -15,20 +15,12 @@ pipeline {
         steps {
           script {
 
-                sh 'python main.py hello'
-                sh 'ls -ltr'
-                setVersion(env.BRANCH_NAME)
-                def currentVersion = getVersion()
-                echo "Current Application version is ${currentVersion}"
+                // sh 'python main.py hello'
+                // sh 'ls -ltr'
+                // setVersion(env.BRANCH_NAME)
+                // def currentVersion = getVersion()
+                echo "Set env version"
           }
-        }
-    }
-    stage('Set env from') {
-          steps {
-            script{
-            def env = getEnvironment("${env.WORKSPACE}/features/environment.json")
-            echo "config loaded for test ${env}"
-            }
         }
     }
     stage('Testing Jenkins file') {
