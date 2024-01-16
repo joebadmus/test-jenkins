@@ -1,7 +1,7 @@
 @Library("shared-library") _
 pipeline {
 //   agent { label "linux" }
-  agent none
+  agent any
 
   parameters{
       string(name: 'ENVIRONMENT', defaultValue: 'test')
