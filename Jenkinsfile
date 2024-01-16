@@ -21,11 +21,8 @@ pipeline {
     // }
     stage('Testing Jenkins file') {
         steps {
-          script{
-            echo "Testing enn variable"
-            printenv | sort { 
-            }
-          }
+            sh 'echo "Testing enn variable"'
+            sh ' printenv | sort '
       }
     }
   }
