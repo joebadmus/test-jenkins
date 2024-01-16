@@ -22,8 +22,9 @@ pipeline {
     stage('Testing Jenkins file') {
         steps {
           script{
-            testJenkinsBuild()
-            // getVersion()
+            echo "Testing enn variable"
+            printenv | sort { 
+            }
           }
       }
     }
