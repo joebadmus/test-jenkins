@@ -1,6 +1,6 @@
 // @Library("shared-library") _
 
-getVersion()
+// getVersion()
 pipeline {
 //   agent { label "linux" }
   agent any
